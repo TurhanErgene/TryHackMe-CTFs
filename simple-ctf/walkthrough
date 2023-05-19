@@ -1,0 +1,10 @@
+>> nmap -A 10.10.147.104 | tee nmap
+
+>> gobuster dir -u 10.10.147.104 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 100
+
+Found: {"/simple", "/server-status"}
+
+In the bottom of the webpage found copyright section where contains the following text: "This site is powered by CMS Made Simple version 2.2.8". Search "cms made simple version 2.2.8 cve" and chose the highest scored CVE.
+
+Ran: owasp-zap 
+
