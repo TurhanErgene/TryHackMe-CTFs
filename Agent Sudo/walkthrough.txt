@@ -90,5 +90,10 @@ OR
 TIPS: Reverse image and Foxnews.
 # Roswell alien autopsy #
 
+### Privilege Escalation ###
+>> sudo -l
+
+Searched: "(ALL, !root) /bin/bash" in exploit DB and Found "CVE-2019-14287" https://www.exploit-db.com/exploits/47502
+>> python3 sudo_exploit.py
 
 
