@@ -1,3 +1,6 @@
+** Note: Add 10.10.193.90 bricks.thm to your /etc/hosts file. **
+
+
 >> nmap 10.10.193.90
 PORT     STATE SERVICE
 22/tcp   open  ssh
@@ -12,3 +15,19 @@ Found:
 https://bricks.thm/wp-login.php?redirect_to=https%3A%2F%2F10.10.193.90%2Fwp-admin%2F&reauth=1
 https://10.10.193.90/wp-admin/admin-ajax.php
 https://bricks.thm/comments/
+
+
+>> wpscan --url https://10.10.193.90
+Did not work
+
+>> wpscan --url https://bricks.thm --disable-tls-checks
+[+] WordPress theme in use: bricks
+| Location: https://bricks.thm/wp-content/themes/bricks/
+ | Readme: https://bricks.thm/wp-content/themes/bricks/readme.txt
+ | Style URL: https://bricks.thm/wp-content/themes/bricks/style.css
+ | Style Name: Bricks
+ | Author URI: https://bricksbuilder.io/
+
+ | Version: 1.9.5 (80% confidence)
+ | Found By: Style (Passive Detection)
+
