@@ -1,0 +1,25 @@
+>> nmap 10.10.18.143  
+
+22 ssh
+80 http
+
+*Added the IP address and "beta.creative.thm" (found in a subdomain search) to /etc/hosts
+
+>> gobuster dir -u creative.thm -w /usr/share/dirbuster/wordlists/directory-list-1.0.txt       #### -x php,php3,html
+
+>> gobuster dir -u http://workers.htb -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,php3,html
+
+Check if subdomain exists by visiting url and verifying the IP address:
+>> gobuster vhost -v -w <wordlist.txt> -u <url> -o <output_file.txt>
+
+
+beta.creative.thm is a website where you can display another websites content.
+Created a index.html file on root
+hosted with >> python -m http.server 80
+and successfully displayed the content of the html file.
+
+
+
+
+
+
